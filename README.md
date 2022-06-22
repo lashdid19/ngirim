@@ -9,6 +9,7 @@ It's a website to transfer files with a system exactly like [SendAnywhere](https
 - Click the button to send the file
 - Add files to the form then send
 - 6-digit code should appear
+
 **Receiver**
 - Input the 6-digit code to the input field
 - Wait until transfer is finished
