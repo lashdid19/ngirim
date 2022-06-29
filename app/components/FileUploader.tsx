@@ -1,10 +1,14 @@
-import type { IDropzoneProps, ILayoutProps } from "react-dropzone-uploader";
+import type { IDropzoneProps, ILayoutProps, IFileWithMeta } from "react-dropzone-uploader";
 import Dropzone from "react-dropzone-uploader";
 import { AiOutlinePlus } from "react-icons/ai";
 import Preview from "./FileUploader/Preview";
 import SubmitButton from "./FileUploader/SubmitButton";
 
-export default function FileUploader() {
+interface PropsTypes {
+  onFileUploaded : () => void,
+}
+
+export default function FileUploader(props: PropsTypes) {
   const Layout = ({
     input,
     previews,
@@ -27,17 +31,19 @@ export default function FileUploader() {
   // and not just where functions are passed as props into Dropzone
   const getUploadParams: IDropzoneProps["getUploadParams"] = () => ({
     url: "https://httpbin.org/post",
+
   });
 
   const handleSubmit: IDropzoneProps["onSubmit"] = (files, allFiles) => {
     // console.log(files.map((f) => f.meta));
     alert("Sorry, this website is not finished yet :(")
+    props.onFileUploaded()
     allFiles.forEach((f) => f.remove());
   };
 
   const InputContent = () => {
     return (
-      <span className="flex text-green-500 justify-center space-x-6">
+      <span className="flex text-green-500 justify-center space-x-2 md:space-x-6">
         <AiOutlinePlus size={25} />
         <p>Click / Drop to send files</p>
       </span>

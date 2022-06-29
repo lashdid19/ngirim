@@ -7,10 +7,6 @@ import {
 } from "react-icons/ai";
 
 export default function Preview({
-  className,
-  imageClassName,
-  style,
-  imageStyle,
   fileWithMeta: { cancel, remove, restart },
   meta: {
     name = "",
@@ -27,7 +23,7 @@ export default function Preview({
   canRestart,
   extra: { minSizeBytes },
 }: IPreviewProps) {
-  let title = `${name || "?"}, ${formatBytes(size)}`;
+  let title = `${name.slice(0, 25) || "?"}, ${formatBytes(size)}`;
   if (duration) title = `${title}, ${formatDuration(duration)}`;
 
   if (status === "error_file_size" || status === "error_validation") {
@@ -44,7 +40,7 @@ export default function Preview({
             <small className="text-red-500">{String(validationError)}</small>
           )}
           {canRemove && (
-            <span className="text-white" onClick={remove}>
+            <span className="text-white cursor-pointer" onClick={remove}>
               <AiOutlineClose />
             </span>
           )}
@@ -67,7 +63,7 @@ export default function Preview({
       {previewUrl && (
         <div className="flex w-full space-x-5 items-center">
           <img
-            className="w-14 h-14 object-cover"
+            className="hidden md:block w-14 h-14 object-cover"
             src={previewUrl}
             alt={title}
             title={title}
@@ -93,15 +89,10 @@ export default function Preview({
               ></div>
             </div>
           </>
-          // <progress
-          //   className="bg-transparent text-green-500"
-          //   max={100}
-          //   value=
-          // />
         )}
 
         {status === "uploading" && canCancel && (
-          <span className="text-white" onClick={cancel}>
+          <span className="text-white cursor-pointer" onClick={cancel}>
             <AiOutlinePause />
           </span>
         )}
@@ -109,7 +100,7 @@ export default function Preview({
           status !== "getting_upload_params" &&
           status !== "uploading" &&
           canRemove && (
-            <span className="text-white" onClick={remove}>
+            <span className="text-white cursor-pointer" onClick={remove}>
               <AiOutlineClose />
             </span>
           )}
@@ -121,7 +112,7 @@ export default function Preview({
           "ready",
         ].includes(status) &&
           canRestart && (
-            <span className="text-white" onClick={restart}>
+            <span className="text-white cursor-pointer" onClick={restart}>
               <AiOutlineReload />
             </span>
           )}
