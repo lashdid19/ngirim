@@ -17,5 +17,3 @@ It's a website to transfer files with a system exactly like [SendAnywhere](https
 
 ### Why did i made this?
 Because the official [SendAnywhere](https://send-anywhere.com/) website doesn't support on mobile ( you have to install the app or switch to desktop view). Even if i rarely use this website, i have to switch to desktop view on mobile when i want to use it and i'm too lazy for that.
-
-Also to learn RemixJs
